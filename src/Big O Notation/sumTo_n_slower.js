@@ -15,4 +15,4 @@ function addUpTo(n) {
     return sum;
 }
 
-console.log(addUpTo(5));
+console.log(addUpTo(5)); //15
