@@ -2,7 +2,10 @@
 //The function should return true if every value in the array has it's corresponding value squared in the second array. 
 //The frequency of values must be the same.
 
-// Naive solution using nested loops.
+// Naive solution using nested loops. What it does is squares each value of the first array 
+//and checks if there is a match in the second array. if it finds, it removes it from the array.
+
+//Time complexity O(n * n );
 
 function same(arr1, arr2) {
     if (arr1.length !== arr2.length) {
