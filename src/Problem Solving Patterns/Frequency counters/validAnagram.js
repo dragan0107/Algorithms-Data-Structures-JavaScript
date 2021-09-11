@@ -16,11 +16,12 @@ function validAnagram(str1, str2) {
 
     for (let i = 0; i < str1.length; i++) {
         let letter = str1[i];
-        obj1[letter] = (obj1[letter] || 0) + 1;
+        obj1[letter] ? obj1[letter] += 1 : obj1[letter] = 1;
     }
+
     for (let i = 0; i < str2.length; i++) {
         let letter = str2[i];
-        obj2[letter] = (obj2[letter] || 0) + 1;
+        obj2[letter] ? obj2[letter] += 1 : obj2[letter] = 1;
     }
 
     for (let key in obj1) {
