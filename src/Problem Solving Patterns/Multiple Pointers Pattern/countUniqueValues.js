@@ -8,7 +8,10 @@ function countUniqueValues(arr) {
     let left = 0;
     let right = 1;
 
+    // Loop through the SORTED array as long as left is lower than right, and right is lower then array length.
     while (left < right && right < arr.length) {
+
+        //If two numbers are equal, we remove the duplicate and check again. If not, move the window up.
         if (arr[left] === arr[right]) {
             arr.splice(right, 1);
         } else {
