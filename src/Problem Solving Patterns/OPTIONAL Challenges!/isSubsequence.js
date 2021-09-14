@@ -29,3 +29,19 @@ console.log(isSubsequence('cool', 'bcxoodl')); // true
 console.log(isSubsequence('hello', 'hello world')); // true
 console.log(isSubsequence('sing', 'sting')); // true
 console.log(isSubsequence('abc', 'acb')); // false (order matters)
+
+// Simpler and a bit shorter method.
+
+
+function isSubsequence2(str1, str2) {
+    if (!str1) return true;
+
+    let i = 0;
+
+    for (let j = 0; j < str2.length; j++) {
+        if (i == str1.length - 1) return true; //Each time we ask if the value of i is equal to first string-1. If it is, it automatically is true.
+        if (str1[i] === str2[j]) i++; // We only increase i if there is a match in the second string. 
+    }
+
+    return false;
+};
