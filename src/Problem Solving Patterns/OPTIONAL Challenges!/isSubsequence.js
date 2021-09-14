@@ -45,3 +45,8 @@ function isSubsequence2(str1, str2) {
 
     return false;
 };
+
+// console.log(isSubsequence2('cool', 'bcxoodl')); // true
+// console.log(isSubsequence2('hello', 'hello world')); // true
+// console.log(isSubsequence2('sing', 'sting')); // true
+// console.log(isSubsequence2('abc', 'acb')); // false (order matters)
