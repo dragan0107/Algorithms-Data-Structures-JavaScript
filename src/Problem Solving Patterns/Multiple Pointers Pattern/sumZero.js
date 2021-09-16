@@ -6,7 +6,7 @@ Return an array that includes both values that sum to zero or undefined if a pai
 
 function sumZero(arr) {
     let start = 0;
-    let end = arr.length - 1;
+    let end = arr.length - 1; // One pointer is at start, one is at the end.
 
     while (start < end) {
 
@@ -14,13 +14,13 @@ function sumZero(arr) {
 
         if (sum === 0) {
             return [arr[start], arr[end]];
-        } else if (sum > 0) {
+        } else if (sum > 0) { //If sum is greater than 0, we move the end point back
             end--;
-        } else if (sum < 0) {
+        } else if (sum < 0) { // If sum is lower than 0, we move the start point up
             start++
         }
     }
-    return undefined;
+    return undefined; // We return undefined if the pair doesn't exist.
 }
 
 
