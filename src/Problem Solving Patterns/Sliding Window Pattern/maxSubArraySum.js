@@ -7,18 +7,20 @@ function maxSubarraySum(arr, n) {
 
     let maxSum = 0;
     let tempSum = 0;
+    // We take the first n elements sum as a reference.
     for (let i = 0; i < n; i++) {
         maxSum += arr[i];
     }
 
-    tempSum = maxSum;
+    tempSum = maxSum; // We make it equal to temp sum.
 
     for (let i = n; i < arr.length; i++) {
-        tempSum = tempSum - arr[i - n] + arr[i];
+
+        tempSum = tempSum - arr[i - n] + arr[i]; // Then we take away previous num and add the following one in the window.
 
         if (tempSum > maxSum) {
             maxSum = tempSum;
-        }
+        } // We compare those two and update max sum with the higher one.
 
     }
 
