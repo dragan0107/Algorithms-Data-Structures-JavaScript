@@ -4,7 +4,7 @@ If arr[j] is greater than arr[j+1], swap those two values!
 Return the sorted array */
 
 
-function swap(arr, idx1, idx2) {
+const swap = (arr, idx1, idx2) => {
     let temp = arr[idx1];
     arr[idx1] = arr[idx2];
     arr[idx2] = temp;
@@ -19,11 +19,8 @@ const bubbleSort = (arr) => {
                 swap(arr, j, j + 1)
             }
         }
-
     }
-
     return arr;
-
 }
 
-console.log(bubbleSort([5, 76, 3, 6, 8, 9, 10, 2, 1, 17, 55]));
+console.log(bubbleSort([5, 76, 3, 6, 8, 9, 10, 2, 1, 17, 55, -5, 4, 3]));
