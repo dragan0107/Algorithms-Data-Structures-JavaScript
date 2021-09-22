@@ -22,9 +22,12 @@ function selectionSort(arr) {
                 indexOfLowest = j
             };
         }
-        swap(arr, indexOfLowest, i);
+        if (lowest !== arr[i]) { // Only when lowest and arr[i] are different, we should swap
+            swap(arr, indexOfLowest, i);
+        }
     }
     return arr;
 }
 
-console.log(selectionSort([5, 15, 3, 6, 4, 1, 11]));
+// console.log(selectionSort([0, 5, 15, 3, 6, 4, 1, 11]));
+console.log(selectionSort([0, 1, 2, 3, 6, 4, 10, 11]));
