@@ -18,16 +18,15 @@ const swap = (arr, idx1, idx2) => { // short function for element swapping
 function insertionSort(arr) {
 
     for (let i = 1; i < arr.length; i++) {
-        for (let j = i - 1; j >= 0; j--) {
-            if (arr[i] < arr[j]) {
-                swap(arr, i, j);
-            }
+        let currentValue = arr[i];
+        for (var j = i - 1; j >= 0 && arr[j] > currentValue; j--) {
+            arr[j + 1] = arr[j];
         }
-        console.log(arr);
+        arr[j + 1] = currentValue;
     }
-
+    console.log(arr);
 
     return arr;
 }
 
-console.log(insertionSort([5, 1, 5, 3, 6, 78, 99, 11, 24]));
+console.log(insertionSort([7, 1, 5, 10, 12, 3]));
