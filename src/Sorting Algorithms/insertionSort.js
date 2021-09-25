@@ -19,10 +19,10 @@ function insertionSort(arr) {
 
     for (let i = 1; i < arr.length; i++) {
         let currentValue = arr[i];
-        for (var j = i - 1; j >= 0 && arr[j] > currentValue; j--) {
-            arr[j + 1] = arr[j];
+        for (var j = i - 1; j >= 0 && arr[j] > currentValue; j--) { // we keep looping until the j value is greater than i.
+            arr[j + 1] = arr[j]; // we also used VAR instead of LET to make use of the loops scope.
         }
-        arr[j + 1] = currentValue;
+        arr[j + 1] = currentValue; //since the inner loop finished, we found where the current value has to be placed, and we continue increasing i.
     }
     console.log(arr);
 
