@@ -29,4 +29,4 @@ function insertionSort(arr) {
     return arr;
 }
 
-console.log(insertionSort([7, 1, 5, 10, 12, 3]));
+console.log(insertionSort([7, 1, 5, 10, 12, 3])); // [ 1, 3, 5, 7, 10, 12 ]
