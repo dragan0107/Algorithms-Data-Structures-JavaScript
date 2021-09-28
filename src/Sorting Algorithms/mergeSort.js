@@ -5,7 +5,6 @@ If the value in the first array is larger than the value in the second array, pu
 Once we exhaust one array, push in all remaining values from the other array */
 
 function mergeHelper(arr1, arr2) { // We use this function to merge 2 SORTED arrays back to one and return it.
-
     let result = [];
     let i = 0;
     let j = 0;
@@ -23,7 +22,6 @@ function mergeHelper(arr1, arr2) { // We use this function to merge 2 SORTED arr
             j++;
         }
     }
-
     //Shorter array finishes first, so we just re-add the rest since they're sorted.
     while (i < arr1.length) {
         result.push(arr1[i]);
@@ -33,7 +31,6 @@ function mergeHelper(arr1, arr2) { // We use this function to merge 2 SORTED arr
         result.push(arr2[j]);
         j++;
     }
-
     return result;
 }
 
