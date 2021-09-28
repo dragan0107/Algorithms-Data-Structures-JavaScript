@@ -4,7 +4,7 @@ If the value in the first array is smaller than the value in the second array, p
 If the value in the first array is larger than the value in the second array, push the value in the second array into our results and move on to the next value in the second array
 Once we exhaust one array, push in all remaining values from the other array */
 
-function merge(arr1, arr2) { // We use this function to merge 2 sorted arrays back to one and return it.
+function mergeHelper(arr1, arr2) { // We use this function to merge 2 SORTED arrays back to one and return it.
 
     let result = [];
     let i = 0;
@@ -24,6 +24,7 @@ function merge(arr1, arr2) { // We use this function to merge 2 sorted arrays ba
         }
     }
 
+    //Shorter array finishes first, so we just re-add the rest since they're sorted.
     while (i < arr1.length) {
         result.push(arr1[i]);
         i++;
@@ -36,5 +37,14 @@ function merge(arr1, arr2) { // We use this function to merge 2 sorted arrays ba
     return result;
 }
 
+//Recursive solution.
+//We constantly split the arrays into 2 until they're 1 value long. Then we re-merge them back up and sort by using our helper function.
+function mergeSort(arr) {
+    if (arr.length === 1) return arr;
+    let mid = Math.floor(arr.length / 2);
+    let left = mergeSort(arr.slice(0, mid));
+    let right = mergeSort(arr.slice(mid));
+    return mergeHelper(left, right);
+}
 
-console.log(mergeHelper([1, 6, 8, 24, 55, 101], [2, 5, 9, 10, 12, 15]));
+console.log(mergeSort([5, 7, 16, 35, 777, 33, 1, 66, 55]));
