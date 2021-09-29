@@ -1,22 +1,27 @@
-function pivot(arr, start = 0, end = arr.length - 1) {
-    const swap = (arr, idx1, idx2) => {
-        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
-    };
+const swap = (arr, idx1, idx2) => { // short function for element swapping
+    let temp = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = temp;
+}
 
-    // We are assuming the pivot is always the first element
+
+//This function uses first element as a pivot, then compares it to each value in the array, if the pivot is higher, we increase the numIndex by 1.
+//numIndex is used to keep track of the place in array where our number is going to end up after the loop finishes.
+//We use the swap function to swap the current value with the higher number on the index of numIndex.
+function pivot(arr, start = 0, end = arr.length - 1) {
+
     let pivot = arr[start];
-    let swapIdx = start;
+    let numIndex = start;
 
     for (let i = start + 1; i <= end; i++) {
         if (pivot > arr[i]) {
-            swapIdx++;
-            swap(arr, swapIdx, i);
+            numIndex++;
+            swap(arr, numIndex, i)
         }
     }
+    swap(arr, start, numIndex); //Final sort of the pivot to it's right index.
+    return numIndex;
 
-    // Swap the pivot from the start the swapPoint
-    swap(arr, start, swapIdx);
-    return swapIdx;
 }
 
 
@@ -31,7 +36,7 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
     return arr;
 }
 
-quickSort([100, -3, 2, 4, 6, 9, 1, 2, 5, 3, 23])
+console.log(quickSort([100, -3, 2, 4, 6, 9, 1, 2, 5, 3, 23]))
 
 
 
