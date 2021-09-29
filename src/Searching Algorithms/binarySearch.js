@@ -8,10 +8,8 @@ If the value is too large, move the right pointer down
 If you never find the value, return -1 */
 
 const binarySearch = (arr, val) => {
-
     let start = 0;
     let end = arr.length - 1;
-
 
     while (start <= end) {
         let midPoint = Math.floor((start + end) / 2);
