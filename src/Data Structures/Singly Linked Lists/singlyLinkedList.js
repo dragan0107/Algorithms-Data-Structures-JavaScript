@@ -24,11 +24,28 @@ class SinglyLinkedList {
         this.length++; // We increase the length by 1 each time and return the list.
         return this;
     }
+    pop() { // Pop method of the linked list.
+        let current = this.head; // We use 2 values; 
+        let newTail = current;
+        while (current.next) { //Current will go ahead of new tail as long as there is next, and be redeclared.
+            newTail = current;
+            current = current.next;
+        }
+        this.tail = newTail; // Once there is no next. we set our new tail, and next to null.
+        this.tail.next = null;
+        this.length--; // List length goes -1;
+        if (this.length === 0) { // If length is 0, that means list is empty so head and tail are null;
+            this.head = null;
+            this.tail = null;
+        }
+        return current; // We return the popped value;
+    }
 }
 
 
 let list = new SinglyLinkedList();
-// list.push(15)
-// list.push(17)
-// list.push(29)
-console.log(list.head.next);
+list.push(15)
+list.push(17)
+list.push(29)
+console.log(list.pop())
+console.log(list);
