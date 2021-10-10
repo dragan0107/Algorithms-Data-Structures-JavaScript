@@ -1,3 +1,7 @@
+//SLL is a one-directional data structure, which means it consists of nodes with no indexes, but only of its value and a pointer to the next value.
+
+
+
 class Node { //We define our node's value and next;
     constructor(val) {
         this.val = val;
