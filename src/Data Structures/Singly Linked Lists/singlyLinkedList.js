@@ -55,6 +55,19 @@ class SinglyLinkedList {
         }
         return removed;
     }
+
+    unshift(val) {
+        let newHead = new Node(val);
+        let oldHead = this.head;
+        if (!this.head) {
+            this.head = newHead;
+            this.tail = this.head;
+        }
+        newHead.next = oldHead;
+        this.head = newHead;
+        this.length++
+
+    }
 }
 
 
