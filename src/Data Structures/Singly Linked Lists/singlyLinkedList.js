@@ -44,6 +44,17 @@ class SinglyLinkedList {
         }
         return current; // We return the popped value;
     }
+    shift() { // Shift method removes one node from the start of the list.
+        let removed = this.head; // Storing the current head into variable since we return it at the end.
+        if (!removed) return undefined;
+        this.head = removed.next; // Setting new head.
+        this.length--; // Decrementing the length.
+        if (this.length === 0) { // If length is 0, that means list is empty so head and tail are null;
+            this.head = null;
+            this.tail = null;
+        }
+        return removed;
+    }
 }
 
 
@@ -51,5 +62,5 @@ let list = new SinglyLinkedList();
 list.push(15)
 list.push(17)
 list.push(29)
-console.log(list.pop())
+console.log(list.shift())
 console.log(list);
