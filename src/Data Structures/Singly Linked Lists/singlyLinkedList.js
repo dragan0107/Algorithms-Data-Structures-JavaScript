@@ -55,18 +55,28 @@ class SinglyLinkedList {
         }
         return removed;
     }
-
-    unshift(val) {
-        let newHead = new Node(val);
-        let oldHead = this.head;
-        if (!this.head) {
+    unshift(val) { // This method adds one element at the start of the SLL.
+        let newHead = new Node(val); // We declare the new value.
+        let oldHead = this.head; // We store the current head in a variable.
+        if (!this.head) { // If empty list, declare new node as both head and tail.
             this.head = newHead;
             this.tail = this.head;
+        } else { // In other case, we set the new node's next item to be the OLD head node.
+            newHead.next = oldHead;
+            this.head = newHead; //And we set the head of the list as a new node.
         }
-        newHead.next = oldHead;
-        this.head = newHead;
-        this.length++
+        this.length++; // Increase the length.
 
+    }
+    get(idx) { // This method returns the Node positioned at the input 'idx' value.
+        if (idx < 0 || idx > this.length) return null; // If input idx is less than 0 or higher than length, return null.
+        let counter = 0; // We use counter variable as our start which we will increase as long as it's lower than input idx.
+        let tempNode = this.head; // We start from the head node.
+        while (counter < idx) {
+            tempNode = tempNode.next; // We re-declare the temporary Node each time we loop through the list until counter and idx are same value.
+            counter++;
+        }
+        return tempNode; // Returning the corresponding node.
     }
 }
 
@@ -75,5 +85,11 @@ let list = new SinglyLinkedList();
 list.push(15)
 list.push(17)
 list.push(29)
-console.log(list.shift())
-console.log(list);
+list.push(55)
+list.push(3)
+list.push(44)
+list.push(245)
+list.push(323)
+list.push(54)
+list.push(112)
+console.log(list.get(9))
