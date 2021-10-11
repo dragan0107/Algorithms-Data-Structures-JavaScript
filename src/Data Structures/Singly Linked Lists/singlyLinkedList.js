@@ -78,6 +78,13 @@ class SinglyLinkedList {
         }
         return tempNode; // Returning the corresponding node.
     }
+    set(val, idx) { // This method updates the value of a node at the specific index in the list.
+        let newValue = val;
+        let updatedItem = this.get(idx); // We use our get method to return the current node at given index.
+        if (!updatedItem) return false; // If we dont return any value, return false from the method.
+        updatedItem.val = newValue; // If yes, we will update the node's value and return true;
+        return true;
+    }
 }
 
 
@@ -92,4 +99,4 @@ list.push(245)
 list.push(323)
 list.push(54)
 list.push(112)
-console.log(list.get(9))
+console.log(list.set('new value text', 2))
