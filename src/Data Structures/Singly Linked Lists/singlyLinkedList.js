@@ -28,7 +28,7 @@ class SinglyLinkedList {
         this.length++; // We increase the length by 1 each time and return the list.
         return this;
     }
-    pop() { // Pop method of the linked list.
+    pop() { // Pop method of the linked list, removes the last node from the list.
         let current = this.head; // We use 2 values; 
         let newTail = current;
         while (current.next) { //Current will go ahead of new tail as long as there is next, and be redeclared.
@@ -103,6 +103,17 @@ class SinglyLinkedList {
         this.length++;
         return true; // At the end we increase length and return true.
     }
+    remove(idx) { // This method removes any node at the given index.
+        if (idx < 0 || idx >= this.length) return undefined;
+        if (idx === 0) return this.shift(); // We make use of shift and pop methods if values are start or end of the list.
+        if (idx === this.length - 1) return this.pop();
+        let prev = this.get(idx - 1); // We first use the previous node.
+        let removed = prev.next; // We are saving the removed Node so we can later return it.
+        let newNext = removed.next; // This will be the new next value since we are removing one Node in between;
+        prev.next = newNext; // Here we re-declare the new next to the previous node.
+        this.length--; // Decreasing and returning the removed node.
+        return removed;
+    }
 }
 
 
@@ -111,11 +122,6 @@ list.push(15)
 list.push(17)
 list.push(29)
 list.push(55)
-list.push(3)
-list.push(44)
-list.push(245)
-list.push(323)
-list.push(54)
-list.push(112)
-console.log(list.insert('new value text', 4))
-console.log(list.get(4));
+    // console.log(list.insert('new value text', 4))
+console.log(list.remove(1));
+console.log(list);
