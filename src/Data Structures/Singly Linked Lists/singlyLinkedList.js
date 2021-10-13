@@ -85,6 +85,24 @@ class SinglyLinkedList {
         updatedItem.val = newValue; // If yes, we will update the node's value and return true;
         return true;
     }
+    insert(val, idx) { // This method inserts a Node into the list, at any given index.
+        if (idx < 0 || idx > this.length) return false; // We have 3 edge cases.
+        if (idx === this.length) { //If index is same as length, we add the node at the end of the list.
+            this.push(val);
+            return true;
+        }
+        if (idx === 0) { // If index is 0, we reuse unshift method to put one Node at the beginning of the list.
+            this.unshift(val);
+            return true;
+        }
+        let newValue = new Node(val); // In any other case, we get access of the node before the input index, and the one after, so we can update their next values.
+        let prevNode = this.get(idx - 1);
+        let currNode = prevNode.next;
+        newValue.next = currNode;
+        prevNode.next = newValue;
+        this.length++;
+        return true; // At the end we increase length and return true.
+    }
 }
 
 
@@ -99,4 +117,5 @@ list.push(245)
 list.push(323)
 list.push(54)
 list.push(112)
-console.log(list.set('new value text', 2))
+console.log(list.insert('new value text', 4))
+console.log(list.get(4));
