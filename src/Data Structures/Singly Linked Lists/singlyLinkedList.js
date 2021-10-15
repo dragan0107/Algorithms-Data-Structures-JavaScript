@@ -114,18 +114,18 @@ class SinglyLinkedList {
         this.length--; // Decreasing and returning the removed node.
         return removed;
     }
-    reverse() {
-        let node = this.head;
+    reverse() { // This method reverses the SLL!. 
+        let node = this.head; // We will firstly swap the head and the tail, and store the head first before redeclaring it in next line.
         this.head = this.tail;
         this.tail = node;
-        let next;
+        let next; // We define next and previous variables. Previous is null  because our new tail's next value must be null.
         let previous = null;
         for (let i = 0; i < this.length; i++) {
-            next = node.next;
-            node.next = previous;
-            previous = node;
-            node = next;
-        }
+            next = node.next; // Each iteration, we set next to current node's next value.
+            node.next = previous; // Then, we select the current nodes next value to previous.
+            previous = node; // Now we re-declare the previous value to be the current node.
+            node = next; // And we re-declare the node's value to be the current next value.
+        } // And we loop until the end of the list.
         return this;
     }
 }
