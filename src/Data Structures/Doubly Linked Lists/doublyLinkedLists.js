@@ -67,6 +67,27 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+    get(idx) {
+        if (idx < 0 || idx >= this.length) return null;
+        let mid = Math.floor(this.length / 2);
+        let current;
+        if (idx < mid) {
+            current = this.head;
+            let counter = 0;
+            while (counter < idx) {
+                current = current.next;
+                counter++;
+            }
+        } else {
+            current = this.tail;
+            let counter = this.length - 1;
+            while (counter > idx) {
+                current = current.previous;
+                counter--;
+            }
+        }
+        return current;
+    }
 }
 
 let list = new DoublyLinkedList();
@@ -75,6 +96,6 @@ list.push(14);
 list.push(17);
 list.push(44);
 list.push(76);
-console.log(list.unshift(100));
-
-console.log(list.head.next.previous);
+list.push(36);
+list.push(88);
+console.log(list.get(2));
