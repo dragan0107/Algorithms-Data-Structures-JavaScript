@@ -67,7 +67,8 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
-    get(idx) {
+    get(idx) { // Get method that returns a node at the input index.
+        // If input idx is at the first half of the list, we loop from the start, if not, we loop from the end.
         if (idx < 0 || idx >= this.length) return null;
         let mid = Math.floor(this.length / 2);
         let current;
@@ -88,14 +89,24 @@ class DoublyLinkedList {
         }
         return current;
     }
+    set(val, idx) { // Set method updates a node's value at the input index ;
+        let node = this.get(idx);
+        if (node) {
+            node.val = val;
+            return true;
+        }
+        return false;
+    }
 }
 
 let list = new DoublyLinkedList();
 
 list.push(14);
 list.push(17);
+list.push(100);
 list.push(44);
 list.push(76);
 list.push(36);
 list.push(88);
-console.log(list.get(2));
+console.log(list.set(666, 2));
+// console.log(list);
