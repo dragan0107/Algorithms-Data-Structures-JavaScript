@@ -97,16 +97,47 @@ class DoublyLinkedList {
         }
         return false;
     }
+    insert(val, idx) {
+        if (idx < 0 || idx >= this.length) return null;
+        if (idx === 0) return !!this.unshift(val);
+        if (idx === this.length) return !!this.push(val);
+
+        let newNode = new Node(val);
+        let foundNode = this.get(idx);
+
+        foundNode.previous.next = newNode; // In these 4 lines, all we do is connect the found node and the previous node to the new node.
+        newNode.previous = foundNode.previous.next;
+        newNode.next = foundNode;
+        foundNode.previous = newNode;
+
+        this.length++;
+        return true;
+    }
+    remove(idx) {
+        if (idx < 0 || idx >= this.length) return null;
+        if (idx === 0) return this.shift();
+        if (idx === this.length - 1) return this.pop();
+
+        let removedNode = this.get(idx);
+        let before = removedNode.previous;
+        let after = removedNode.next;
+        before.next = after;
+        after.previous = before;
+
+        removedNode.next = null;
+        removedNode.previous = null;
+
+        this.length--;
+        return removedNode;
+    }
 }
 
 let list = new DoublyLinkedList();
 
 list.push(14);
-list.push(17);
-list.push(100);
-list.push(44);
-list.push(76);
-list.push(36);
-list.push(88);
-console.log(list.set(666, 2));
-// console.log(list);
+list.push(434);
+
+
+
+console.log(list.remove(-1))
+    // console.log(list);
