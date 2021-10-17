@@ -39,7 +39,7 @@ class DoublyLinkedList {
         this.length--;
         return oldTail;
     }
-    shift() {
+    shift() { // This method pops one node out of the DLL from the beginning of the list.
         let oldHead = this.head;
         if (!this.head) return undefined;
         if (this.length === 1) { // If only one node in the list, we set both head and tail to null.
@@ -53,6 +53,20 @@ class DoublyLinkedList {
         this.length--;
         return oldHead;
     }
+    unshift(val) { // This method adds one Node at the beginning of the list.
+        let newNode = new Node(val);
+        let oldHead = this.head;
+        if (this.length === 0) { // If list is empty, we set new node to be head and tail.
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            this.head.previous = newNode; // We set old head's prev value to be new node.
+            newNode.next = oldHead; // New node's next value is pointing at old head;
+            this.head = newNode; // Re-declaring list's head to be new node.
+        }
+        this.length++;
+        return this;
+    }
 }
 
 let list = new DoublyLinkedList();
@@ -61,6 +75,6 @@ list.push(14);
 list.push(17);
 list.push(44);
 list.push(76);
-console.log(list.shift());
+console.log(list.unshift(100));
 
-console.log(list);
+console.log(list.head.next.previous);
