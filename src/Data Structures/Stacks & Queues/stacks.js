@@ -33,7 +33,8 @@ class Stack {
         let temp = this.first;
         this.first = temp.next;
         temp.next = null;
-        return --this.size;
+        this.size--;
+        return temp;
     }
 }
 
