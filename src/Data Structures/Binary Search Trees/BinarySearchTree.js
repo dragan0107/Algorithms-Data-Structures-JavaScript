@@ -18,6 +18,7 @@ class BinarySearchTree {
         } else { // If not empty we have to find where to store the node.
             let current = this.root; // We define the variable current which will be updated with every while loop iteration.
             while (true) { // Loop will be running until we break out with return statement.
+                if (val === current.val) return undefined;
                 if (val > current.val) {
                     if (current.right) { // If input value is greater than current, and there is a value on current's right, we update current.
                         current = current.right;
@@ -37,6 +38,29 @@ class BinarySearchTree {
         }
 
     }
+    find(val) {
+        if (!this.root) return false;
+        let current = this.root;
+
+        while (true) {
+            if (val === current.val) return true;
+            if (val > current.val) {
+                if (current.right) {
+                    current = current.right;
+                } else {
+                    return false;
+                }
+            } else {
+                if (val < current.val) {
+                    if (current.left) {
+                        current = current.left;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
 }
 
 let bst = new BinarySearchTree();
@@ -46,6 +70,9 @@ bst.insert(13)
 bst.insert(16)
 bst.insert(11)
 bst.insert(5)
-bst.insert(7)
-bst.insert(2)
-console.log(bst);
+bst.insert(53)
+bst.insert(1)
+bst.insert(33)
+bst.insert(8)
+
+console.log(bst.find(10));
