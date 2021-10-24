@@ -32,4 +32,10 @@ heap.insert(27);
 heap.insert(55);
 heap.insert(18);
 
-console.log(heap.values);
+console.log(heap.values); // Output [55, 33, 41, 12, 27, 39, 18]
+
+//                                        55
+
+//                                33              41
+
+//                            12     27       39     18
