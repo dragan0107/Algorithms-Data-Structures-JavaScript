@@ -74,16 +74,26 @@ class BinarySearchTree {
         return visited; // When the loop ends, we return the visited arr.
     }
 
-    DFSPreOrder() {
+    DFSPreOrder() { // Depth first pre order method.
+        let visited = []; // We define our output array.
+
+        let traverse = (node) => { // We define our helped function where we pass the node.
+            visited.push(node.val); // Each time we push the value of the node to the output array.
+            if (node.left) traverse(node.left) // Then we explore the left side of the tree using recursion as long as there's nodes. 
+            if (node.right) traverse(node.right); // After we finish the left side, we do the same on the right side.
+        }
+        traverse(this.root) // We start the traverse with the root.
+        return visited;
+    }
+    DFSPostOrder() { // Depth first post order. Difference is that we start pushing the values after we explore left, and then right side.
         let visited = [];
-        let current = this.root;
 
         let traverse = (node) => {
-            visited.push(node.val);
             if (node.left) traverse(node.left)
             if (node.right) traverse(node.right);
+            visited.push(node.val);
         }
-        traverse(current)
+        traverse(this.root)
         return visited;
     }
 }
@@ -95,7 +105,7 @@ bst.insert(13)
 bst.insert(16)
 bst.insert(11)
 bst.insert(5)
-bst.insert(9)
+bst.insert(6)
 bst.insert(4)
 
 
