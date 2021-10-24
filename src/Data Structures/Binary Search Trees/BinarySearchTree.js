@@ -61,20 +61,29 @@ class BinarySearchTree {
             }
         }
     }
-    bfs() { // Breadth first method of traversing a tree (it checks the tree basically line by line, from left to right)
-        let queue = [];
-        let visited = [];
-        queue.push(this.root);
-        while (queue.length > 0) {
-            let shifted = queue.shift();
-            visited.push(shifted.val);
-            if (shifted.left) {
-                queue.push(shifted.left);
-            }
-            if (shifted.right) {
-                queue.push(shifted.right);
-            }
+    BFS() { // Breadth first method of traversing a tree (it checks the tree basically line by line, from left to right)
+        let queue = []; // We will use the queue data structure to push nodes we're checking in a queue;
+        let visited = []; // This is where we will store values of a dequeued node;
+        queue.push(this.root); // We add the root node to the queue;
+        while (queue.length > 0) { // Loop will run until the queue is empty;
+            let shifted = queue.shift(); // Firstly, we dequeue the first node and store in a variable;
+            visited.push(shifted.val); // Then we push its value to the visited array;
+            if (shifted.left) queue.push(shifted.left); // We check if there is any nodes on its left or right, and if yes, we add to queue.
+            if (shifted.right) queue.push(shifted.right);
         }
+        return visited; // When the loop ends, we return the visited arr.
+    }
+
+    DFSPreOrder() {
+        let visited = [];
+        let current = this.root;
+
+        let traverse = (node) => {
+            visited.push(node.val);
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right);
+        }
+        traverse(current)
         return visited;
     }
 }
@@ -90,4 +99,4 @@ bst.insert(9)
 bst.insert(4)
 
 
-console.log(bst.bfs());
+console.log(bst.DFSPreOrder());
