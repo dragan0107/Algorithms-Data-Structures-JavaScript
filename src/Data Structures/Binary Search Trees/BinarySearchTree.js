@@ -61,6 +61,22 @@ class BinarySearchTree {
             }
         }
     }
+    bfs() { // Breadth first method of traversing a tree (it checks the tree basically line by line, from left to right)
+        let queue = [];
+        let visited = [];
+        queue.push(this.root);
+        while (queue.length > 0) {
+            let shifted = queue.shift();
+            visited.push(shifted.val);
+            if (shifted.left) {
+                queue.push(shifted.left);
+            }
+            if (shifted.right) {
+                queue.push(shifted.right);
+            }
+        }
+        return visited;
+    }
 }
 
 let bst = new BinarySearchTree();
@@ -70,9 +86,8 @@ bst.insert(13)
 bst.insert(16)
 bst.insert(11)
 bst.insert(5)
-bst.insert(53)
-bst.insert(1)
-bst.insert(33)
-bst.insert(8)
+bst.insert(9)
+bst.insert(4)
 
-console.log(bst.find(10));
+
+console.log(bst.bfs());
