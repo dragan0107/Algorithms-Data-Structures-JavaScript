@@ -61,6 +61,7 @@ class BinarySearchTree {
             }
         }
     }
+
     BFS() { // Breadth first method of traversing a tree (it checks the tree basically line by line, from left to right)
         let queue = []; // We will use the queue data structure to push nodes we're checking in a queue;
         let visited = []; // This is where we will store values of a dequeued node;
@@ -74,6 +75,8 @@ class BinarySearchTree {
         return visited; // When the loop ends, we return the visited arr.
     }
 
+    // With the current tree values, it would output: [10, 5, 13, 4, 6, 11, 16]
+
     DFSPreOrder() { // Depth first pre order method.
         let visited = []; // We define our output array.
 
@@ -85,6 +88,9 @@ class BinarySearchTree {
         traverse(this.root) // We start the traverse with the root.
         return visited;
     }
+
+    // With the current tree values, it would output: [10, 5, 4, 6, 13, 11, 16]
+
     DFSPostOrder() { // Depth first post order. Difference is that we start pushing the values after we explore left, and then right side.
         let visited = [];
 
@@ -96,6 +102,21 @@ class BinarySearchTree {
         traverse(this.root)
         return visited;
     }
+
+    // With the current tree values, it would output: [4, 6, 5, 11, 16, 13, 10]
+    DFSInOrder() { // Depth first IN order. What DFS In Order does is, it firstly explores left, visits the node, and explores the right.
+        let visited = [];
+
+        let traverse = (node) => {
+            if (node.left) traverse(node.left)
+            visited.push(node.val);
+            if (node.right) traverse(node.right);
+        }
+        traverse(this.root)
+        return visited;
+    }
+
+    // With the current tree values, it would output: [4, 5, 6, 10, 11, 13, 16]
 }
 
 let bst = new BinarySearchTree();
@@ -109,4 +130,7 @@ bst.insert(6)
 bst.insert(4)
 
 
+console.log(bst.BFS());
 console.log(bst.DFSPreOrder());
+console.log(bst.DFSPostOrder());
+console.log(bst.DFSInOrder());
