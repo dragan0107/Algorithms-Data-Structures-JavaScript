@@ -38,24 +38,24 @@ class BinarySearchTree {
         }
 
     }
-    find(val) {
-        if (!this.root) return false;
-        let current = this.root;
+    find(val) { // Value finding method. It will return true if the input value exists in the tree.
+        if (!this.root) return false; // Base case if there's no root.
+        let current = this.root; // We define our initial node.
 
-        while (true) {
+        while (true) { // Each time the loop resets, we check if the value is equal to current node's value.
             if (val === current.val) return true;
-            if (val > current.val) {
+            if (val > current.val) { // If the input value is greater than current node's value, we first check if right node exists;
                 if (current.right) {
-                    current = current.right;
+                    current = current.right; // If it does, we re-declare the current and loop again.
                 } else {
-                    return false;
+                    return false; // If not, we reached the end of the tree, so we return false.
                 }
             } else {
-                if (val < current.val) {
+                if (val < current.val) { // If the input value is lower than current node's value, we check if left node exists.
                     if (current.left) {
-                        current = current.left;
+                        current = current.left; // If it does, we re-declare current node with this left node, and check again in another loop.
                     } else {
-                        return false;
+                        return false; // If no more lefts, we reached the end of the tree, so we return false.
                     }
                 }
             }
