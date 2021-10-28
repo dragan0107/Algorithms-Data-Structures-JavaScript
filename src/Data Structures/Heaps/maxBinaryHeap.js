@@ -22,36 +22,38 @@ class MaxBinaryHeap {
     }
     extractMax() {
         // [18, 33, 41, 12, 27, 39]
-        swapElements(this.values, 0, this.values.length - 1);
-        let popped = this.values.pop();
-        let idx = 0;
-        let currentPrio = this.values[0].priority;
-        let length = this.values.length;
-        while (true) {
-            let leftIdx = (idx * 2) + 1;
-            let rightIdx = (idx * 2) + 2;
-            let swap = null;
-            let leftChildPrio, rightChildPrio;
-            if (leftIdx < length) {
-                leftChildPrio = this.values[leftIdx].priority;
-                if (leftChildPrio < currentPrio) {
-                    swap = leftIdx;
+        if (this.values.length > 1) {
+            swapElements(this.values, 0, this.values.length - 1);
+            let popped = this.values.pop();
+            let idx = 0;
+            let current = this.values[0];
+            let length = this.values.length;
+            while (true) {
+                let leftIdx = (idx * 2) + 1;
+                let rightIdx = (idx * 2) + 2;
+                let swap = null;
+                let leftChild, rightChild;
+                if (leftIdx < length) {
+                    leftChild = this.values[leftIdx];
+                    if (leftChild > current) {
+                        swap = leftIdx;
+                    }
                 }
-            }
-            if (rightIdx < length) {
-                rightChildPrio = this.values[rightIdx].priority;
-                if ((swap === null && rightChildPrio > currentPrio) ||
-                    (swap !== null && rightChildPrio > leftChildPrio)) {
-                    swap = rightIdx;
+                if (rightIdx < length) {
+                    rightChild = this.values[rightIdx];
+                    if ((swap === null && rightChild > current) ||
+                        (swap !== null && rightChild > leftChild)) {
+                        swap = rightIdx;
+                    }
                 }
-            }
-            if (swap === null) break;
-            swapElements(this.values, idx, swap);
-            idx = swap;
+                if (swap === null) break;
+                swapElements(this.values, idx, swap);
+                idx = swap;
 
+            }
+            return popped;
         }
-        return popped;
-
+        return this.values.pop();
     }
 }
 
@@ -66,6 +68,8 @@ heap.insert(55);
 heap.insert(18);
 
 console.log(heap.extractMax());
+console.log(heap.extractMax());
+
 console.log(heap.values); // Output [55, 33, 41, 12, 27, 39, 18]
 
 //                                        55
