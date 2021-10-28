@@ -25,23 +25,23 @@ class MaxBinaryHeap {
         swapElements(this.values, 0, this.values.length - 1);
         let popped = this.values.pop();
         let idx = 0;
-        let current = this.values[0];
+        let currentPrio = this.values[0].priority;
         let length = this.values.length;
         while (true) {
             let leftIdx = (idx * 2) + 1;
             let rightIdx = (idx * 2) + 2;
             let swap = null;
-            let leftChild, rightChild;
+            let leftChildPrio, rightChildPrio;
             if (leftIdx < length) {
-                leftChild = this.values[leftIdx];
-                if (leftChild > current) {
+                leftChildPrio = this.values[leftIdx].priority;
+                if (leftChildPrio < currentPrio) {
                     swap = leftIdx;
                 }
             }
             if (rightIdx < length) {
-                rightChild = this.values[rightIdx];
-                if ((swap === null && rightChild > current) ||
-                    (swap !== null && rightChild > leftChild)) {
+                rightChildPrio = this.values[rightIdx].priority;
+                if ((swap === null && rightChildPrio > currentPrio) ||
+                    (swap !== null && rightChildPrio > leftChildPrio)) {
                     swap = rightIdx;
                 }
             }
