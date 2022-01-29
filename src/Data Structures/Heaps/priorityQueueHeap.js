@@ -3,38 +3,36 @@ const swapElements = (arr, idx1, idx2) => { // short function for element swappi
     arr[idx1] = arr[idx2];
     arr[idx2] = temp;
 }
-class Node {
+class Node { //Our node has a value and a priority value.
     constructor(val, prio) {
         this.value = val;
         this.priority = prio;
     }
 }
 
-class MinBinaryHeap {
+class MinBinaryHeap { // This is a min binary heap (lower node's value is the root)
     constructor() {
         this.values = [];
     }
-    enqueue(val, prio) {
+    enqueue(val, prio) { // This method adds new node to the queue and bubbles it up. (highest priority, lowest number goes to the top);
         let newNode = new Node(val, prio);
-        if (this.values.length === 0) {
+        if (this.values.length === 0) { // If heap is empty, we just add and return the heap.
             this.values.push(newNode);
-            return this.values;
-        }
-        this.values.push(newNode); // Firstly we push the value at the end of the heap.
-        let indexOfVal = this.values.length - 1; // Then we declare the value's initial index;
-        let parentIdx = Math.floor((indexOfVal - 1) / 2); // Here we define the initial parent of the newly added value.
-        let parentPrio = this.values[parentIdx].priority;
+        } else {
+            this.values.push(newNode); // Firstly we push the value at the end of the heap.
+            let indexOfNode = this.values.length - 1; // Then we declare the node's initial index;
+            let parentIdx = Math.floor((indexOfNode - 1) / 2); // Here we define the initial parent of the newly added value.
+            let parentPrio = this.values[parentIdx].priority;
 
-        while (newNode.priority < parentPrio && parentIdx >= 0) { // Loop will run as long as value is greater than its parent and idx greater or equal to 0;
-            swapElements(this.values, indexOfVal, parentIdx); // We swap the values with our helper function.
-            indexOfVal = parentIdx; // We update the values index after swapping;
-            parentIdx = Math.floor((indexOfVal - 1) / 2); // We re-calculate the parent index;
+            while (newNode.priority < parentPrio && parentIdx >= 0) { // Loop will run as long as the priority is higher (lower number) than its parent and idx greater or equal to 0;
+                swapElements(this.values, indexOfNode, parentIdx); // We swap the nodes with our helper function.
+                indexOfNode = parentIdx; // We update the node's index after swapping;
+                parentIdx = Math.floor((indexOfNode - 1) / 2); // We re-calculate the parent index;
+            }
         }
-
         return this.values;
-
     }
-    dequeue() {
+    dequeue() { // This method dequeues the highest priority node and re-declares next one in it's place.
         if (this.values.length > 1) {
             swapElements(this.values, 0, this.values.length - 1);
             let popped = this.values.pop();
@@ -80,9 +78,8 @@ heap.enqueue('take ibefone', 2);
 heap.enqueue('kill kahoot', 1);
 heap.enqueue('jeeful time', 5);
 heap.enqueue('bickin tyme', 3);
-heap.enqueue('xx', 1);
-heap.enqueue('yy', 1);
-console.log(heap.dequeue());
+heap.enqueue('goblin feet', 4);
+heap.enqueue('smelly', 6);
 console.log(heap.dequeue());
 console.log(heap.dequeue());
 console.log(heap.dequeue());
